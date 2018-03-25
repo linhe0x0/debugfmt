@@ -15,7 +15,7 @@ func Test(t *testing.T) {
 
 	log.SetHandler(debug.New(&buf))
 	log.WithField("address", "http://localhost:3000").WithField("foo", "bar").Info("hello")
-	log.WithField("foo", "bar").Info("hello, world")
+	log.WithField("foo", "bar").Info("hello")
 	log.WithField("foo", "bar").Warn("holy guacamole")
 	log.WithField("foo", "bar").Error("boom")
 

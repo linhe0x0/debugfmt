@@ -4,6 +4,7 @@ package debug
 import (
 	"fmt"
 	"io"
+	"sync"
 	"time"
 
 	"github.com/apex/log"
@@ -33,6 +34,7 @@ var Strings = [...]string{
 
 // Handler implementation.
 type Handler struct {
+	mu sync.Mutex
 	Writer io.Writer
 }
 
@@ -51,6 +53,9 @@ func (h *Handler) HandleLog(e *log.Entry) error {
 	names := e.Fields.Names()
 
 	time := formatDateString(e.Timestamp.Local())
+
+	h.mu.Lock()
+	defer h.mu.Unlock()
 
 	fmt.Fprintf(h.Writer, "%s %s %s: ", colors.Gray(time), color(level), color(e.Message))
 
