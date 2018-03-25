@@ -7,49 +7,19 @@ import (
 	"time"
 
 	"github.com/apex/log"
-	"github.com/aybabtme/rgbterm"
+	"github.com/sqrthree/debug/colors"
 )
 
 // color function.
 type colorFunc func(string) string
 
-// Gray returns a grayed string.
-func Gray(s string) string {
-	return rgbterm.FgString(s, 140, 140, 140)
-}
-
-// Blue returns a blued string.
-func Blue(s string) string {
-	return rgbterm.FgString(s, 9, 109, 217)
-}
-
-// Purple returns a purpled string.
-func Purple(s string) string {
-	return rgbterm.FgString(s, 96, 97, 190)
-}
-
-// Yellow returns a yellowed string.
-func Yellow(s string) string {
-	return rgbterm.FgString(s, 212, 177, 6)
-}
-
-// Red returns a redden string.
-func Red(s string) string {
-	return rgbterm.FgString(s, 207, 19, 34)
-}
-
-// Magenta returns a megenta string.
-func Magenta(s string) string {
-	return rgbterm.FgString(s, 235, 47, 150)
-}
-
 // Colors mapping.
 var Colors = [...]colorFunc{
-	log.DebugLevel: Purple,
-	log.InfoLevel:  Blue,
-	log.WarnLevel:  Yellow,
-	log.ErrorLevel: Magenta,
-	log.FatalLevel: Red,
+	log.DebugLevel: colors.Purple,
+	log.InfoLevel:  colors.Blue,
+	log.WarnLevel:  colors.Yellow,
+	log.ErrorLevel: colors.Magenta,
+	log.FatalLevel: colors.Red,
 }
 
 // Strings mapping.
@@ -82,7 +52,7 @@ func (h *Handler) HandleLog(e *log.Entry) error {
 
 	time := formatDateString(e.Timestamp.Local())
 
-	fmt.Fprintf(h.Writer, "%s %s %s: ", Gray(time), color(level), color(e.Message))
+	fmt.Fprintf(h.Writer, "%s %s %s: ", colors.Gray(time), color(level), color(e.Message))
 
 	for _, name := range names {
 		fmt.Fprintf(h.Writer, "%s%s%v ", color(name), "=", e.Fields.Get(name))
