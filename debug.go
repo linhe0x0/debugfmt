@@ -6,6 +6,7 @@ import (
 	"io"
 	"sync"
 	"time"
+	"bytes"
 
 	"github.com/apex/log"
 	"github.com/sqrthree/debug/colors"
@@ -47,6 +48,8 @@ func New(w io.Writer) *Handler {
 
 // HandleLog implements log.Handler.
 func (h *Handler) HandleLog(e *log.Entry) error {
+	var buf bytes.Buffer
+
 	color := Colors[e.Level]
 	level := Strings[e.Level]
 
@@ -54,16 +57,20 @@ func (h *Handler) HandleLog(e *log.Entry) error {
 
 	time := formatDateString(e.Timestamp.Local())
 
+	fmt.Fprintf(&buf, "%s %s %s: ", colors.Gray(time), color(level), color(e.Message))
+
+	for _, name := range names {
+		fmt.Fprintf(&buf, "%s%s%v ", color(name), "=", e.Fields.Get(name))
+	}
+
+	fmt.Fprintln(&buf)
+
+	b := buf.Bytes()
+
 	h.mu.Lock()
 	defer h.mu.Unlock()
 
-	fmt.Fprintf(h.Writer, "%s %s %s: ", colors.Gray(time), color(level), color(e.Message))
-
-	for _, name := range names {
-		fmt.Fprintf(h.Writer, "%s%s%v ", color(name), "=", e.Fields.Get(name))
-	}
-
-	fmt.Fprintln(h.Writer)
+	h.Writer.Write(b)
 
 	return nil
 }
