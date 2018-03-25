@@ -7,3 +7,19 @@
 > A log handler for https://github.com/apex/log with human-friendly colored output. Build for development environment.
 
 ![image](https://user-images.githubusercontent.com/8622362/37872594-6d344e7c-303d-11e8-8891-ac7ec6331628.png)
+
+## Installing
+
+```bash
+go get -u github.com/sqrthree/debug
+```
+
+## Usage
+
+See [_examples](./_examples/main.go) to get more details.
+
+---
+
+> [sqrtthree.com](http://sqrtthree.com/) &nbsp;&middot;&nbsp;
+> GitHub [@sqrthree](https://github.com/sqrthree) &nbsp;&middot;&nbsp;
+> Twitter [@sqrtthree](https://twitter.com/sqrtthree)
