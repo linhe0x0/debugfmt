@@ -6,7 +6,7 @@
 
 > A log handler for https://github.com/apex/log with human-friendly colored output. Build for development environment.
 
-![image](https://user-images.githubusercontent.com/8622362/37872594-6d344e7c-303d-11e8-8891-ac7ec6331628.png)
+![image](https://user-images.githubusercontent.com/8622362/37872821-e383d602-3041-11e8-8b72-82673cfcf80f.png)
 
 ## Installing
 
