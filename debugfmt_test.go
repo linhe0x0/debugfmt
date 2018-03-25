@@ -1,4 +1,4 @@
-package debug_test
+package debugfmt_test
 
 import (
 	"bytes"
@@ -7,13 +7,13 @@ import (
 	"testing"
 
 	"github.com/apex/log"
-	"github.com/sqrthree/debug"
+	"github.com/sqrthree/debugfmt"
 )
 
 func Test(t *testing.T) {
 	var buf bytes.Buffer
 
-	log.SetHandler(debug.New(&buf))
+	log.SetHandler(debugfmt.New(&buf))
 	log.WithField("address", "http://localhost:3000").WithField("foo", "bar").Info("hello")
 	log.WithField("foo", "bar").Info("hello")
 	log.WithField("foo", "bar").Warn("holy guacamole")

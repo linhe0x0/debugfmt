@@ -1,5 +1,5 @@
-// Package debug implements a development-friendly textual handler.
-package debug
+// Package debugfmt implements a development-friendly textual handler.
+package debugfmt
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 	"bytes"
 
 	"github.com/apex/log"
-	"github.com/sqrthree/debug/colors"
+	"github.com/sqrthree/debugfmt/colors"
 )
 
 // color function.

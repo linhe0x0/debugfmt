@@ -4,12 +4,12 @@ import (
 	"os"
 
 	"github.com/apex/log"
-	"github.com/sqrthree/debug"
+	"github.com/sqrthree/debugfmt"
 )
 
 func main() {
 	log.SetLevel(log.DebugLevel)
-	log.SetHandler(debug.New(os.Stdout))
+	log.SetHandler(debugfmt.New(os.Stdout))
 
 	log.Debug("start")
 	log.Info("start")
