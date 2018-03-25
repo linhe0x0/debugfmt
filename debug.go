@@ -55,9 +55,15 @@ func (h *Handler) HandleLog(e *log.Entry) error {
 
 	names := e.Fields.Names()
 
+	len := len(names)
+
 	time := formatDateString(e.Timestamp.Local())
 
-	fmt.Fprintf(&buf, "%s %s %s: ", colors.Gray(time), color(level), color(e.Message))
+	fmt.Fprintf(&buf, "%s %s %s", colors.Gray(time), color(level), color(e.Message))
+
+	if len != 0 {
+		fmt.Fprintf(&buf, ": ")
+	}
 
 	for _, name := range names {
 		fmt.Fprintf(&buf, "%s%s%v ", color(name), "=", e.Fields.Get(name))
