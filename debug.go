@@ -27,8 +27,8 @@ var Colors = [...]colorFunc{
 // Strings mapping.
 var Strings = [...]string{
 	log.DebugLevel: "DEBUG",
-	log.InfoLevel:  "INFO",
-	log.WarnLevel:  "WARN",
+	log.InfoLevel:  " INFO",
+	log.WarnLevel:  " WARN",
 	log.ErrorLevel: "ERROR",
 	log.FatalLevel: "FATAL",
 }
