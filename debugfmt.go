@@ -83,8 +83,7 @@ func (h *Handler) HandleLog(e *log.Entry) error {
 
 // formatDateString formats t to a human-friendly string.
 func formatDateString(t time.Time) string {
-	year, month, day := t.Date()
 	hour, minute, second := t.Clock()
 
-	return fmt.Sprintf("%v-%02d-%02v %02v:%02v:%02v", year, month, day, hour, minute, second)
+	return fmt.Sprintf("%02v:%02v:%02v", hour, minute, second)
 }
