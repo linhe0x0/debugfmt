@@ -2,11 +2,11 @@
 package debugfmt
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"sync"
 	"time"
-	"bytes"
 
 	"github.com/apex/log"
 	"github.com/sqrthree/debugfmt/colors"
@@ -35,7 +35,7 @@ var Strings = [...]string{
 
 // Handler implementation.
 type Handler struct {
-	mu sync.Mutex
+	mu     sync.Mutex
 	Writer io.Writer
 }
 
